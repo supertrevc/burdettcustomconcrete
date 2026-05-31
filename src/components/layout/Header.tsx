@@ -133,7 +133,7 @@ export function Header() {
           </Link>
 
           {/* Desktop nav */}
-          <nav aria-label="Primary" className="hidden lg:block">
+          <nav aria-label="Primary" className="hidden xl:block">
             <ul className="flex items-center gap-1">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
@@ -141,7 +141,7 @@ export function Header() {
                     href={link.href}
                     aria-current={isActive(link.href) ? "page" : undefined}
                     className={cn(
-                      "rounded-md px-3 py-2 text-base font-medium text-navy transition-colors hover:text-amber-ink",
+                      "whitespace-nowrap rounded-md px-2.5 py-2 text-base font-medium text-navy transition-colors hover:text-amber-ink",
                       isActive(link.href) && "text-amber-ink",
                     )}
                   >
@@ -153,7 +153,7 @@ export function Header() {
           </nav>
 
           {/* Desktop CTAs */}
-          <div className="hidden items-center gap-3 lg:flex">
+          <div className="hidden items-center gap-3 xl:flex">
             <a
               href={BUSINESS.phoneHref}
               className={buttonVariants({ variant: "outlineDark", size: "md" })}
@@ -169,8 +169,8 @@ export function Header() {
             </Link>
           </div>
 
-          {/* Mobile controls */}
-          <div className="flex items-center gap-1 lg:hidden">
+          {/* Mobile / tablet controls (hamburger) shown until the full bar fits */}
+          <div className="flex items-center gap-1 xl:hidden">
             <a
               href={BUSINESS.phoneHref}
               aria-label={`Call ${BUSINESS.phone}`}
