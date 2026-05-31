@@ -1,12 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Phone, Star } from "lucide-react";
-import { BRAND_LOGO, BUSINESS, NAV_LINKS, TRUST } from "@/lib/constants";
+import { BUSINESS, NAV_LINKS, TRUST } from "@/lib/constants";
 import { buttonVariants } from "@/components/ui/Button";
+import { Logo } from "@/components/layout/Logo";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -122,14 +122,11 @@ export function Header() {
             className="flex shrink-0 items-center rounded-sm"
             aria-label={`${BUSINESS.shortName} home`}
           >
-            <Image
-              src={BRAND_LOGO}
-              alt={BUSINESS.name}
-              width={600}
-              height={100}
+            {/* Dark mark on the white header bar */}
+            <Logo
               priority
               className={cn(
-                "w-auto transition-all duration-300",
+                "transition-all duration-300",
                 scrolled ? "h-8" : "h-10",
               )}
             />

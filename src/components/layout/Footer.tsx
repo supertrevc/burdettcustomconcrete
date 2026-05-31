@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Phone, MapPin, Clock, Star } from "lucide-react";
 import { FacebookIcon } from "@/components/icons";
+import { Logo } from "@/components/layout/Logo";
 import {
   BUSINESS,
   CITIES,
@@ -20,10 +21,9 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand + social */}
           <div>
-            <p className="font-heading text-xl font-bold text-white">
-              Burdett Custom Concrete
-            </p>
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-light/70">
+            {/* Light mark (brightness-0 invert) directly on the navy section */}
+            <Logo light className="h-9" />
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-light/70">
               Licensed, bonded, and insured concrete contractor serving Post
               Falls and North Idaho. You talk to Dave, not a call center.
             </p>
