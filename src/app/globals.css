@@ -1,26 +1,96 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ------------------------------------------------------------------ */
+/* Burdett Custom Concrete — design tokens (Tailwind v4 @theme)        */
+/* ------------------------------------------------------------------ */
+@theme {
+  /* Brand colors */
+  --color-navy: #16263f;
+  --color-navy-light: #22395c;
+  --color-amber: #e08a1e;
+  --color-amber-dark: #c6760f;
+  /* Accessible amber for small TEXT on light backgrounds (~5.8:1 on white,
+     meets WCAG AA). amber-dark stays the brand hover color for fills. */
+  --color-amber-ink: #8f5408;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Neutrals */
+  --color-surface: #f8fafc;
+  --color-line: #e2e8f0;
+  --color-ink: #334155;
+  --color-muted: #64748b;
+  --color-light: #f8fafc;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Fonts (wired to next/font CSS variables in layout.tsx) */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+
+  /* Motion */
+  --animate-fade-up: fade-up 0.6s ease-out both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ------------------------------------------------------------------ */
+/* Base styles                                                         */
+/* ------------------------------------------------------------------ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #ffffff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    line-height: 1.2;
+    color: var(--color-navy);
+    text-wrap: balance;
+  }
+
+  /* Visible focus ring for keyboard users (WCAG 2.2 AA) */
+  :focus-visible {
+    outline: 2px solid var(--color-amber);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-amber);
+    color: #ffffff;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }

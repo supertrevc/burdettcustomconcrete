@@ -1,0 +1,115 @@
+/**
+ * Single source of truth for Burdett Custom Concrete.
+ * NAP (Name, Address, Phone) must stay verbatim and consistent everywhere
+ * for local SEO. Do not alter without updating the real business listing.
+ */
+
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
+  "https://burdettcustomconcrete.com";
+
+export const BUSINESS = {
+  name: "Burdett Custom Concrete, LLC",
+  shortName: "Burdett Custom Concrete",
+  owner: "Dave Burdett",
+  ownerFull: "David Burdett",
+  phone: "208-640-1883",
+  phoneHref: "tel:+12086401883",
+  // Notification inbox for quote requests (server-side default).
+  notifyEmail: "dbrd0303@gmail.com",
+  address: {
+    street: "725 W Chicory Lane",
+    city: "Post Falls",
+    state: "Idaho",
+    stateShort: "ID",
+    zip: "83854",
+  },
+  // Approximate geo for Post Falls, ID (LocalBusiness schema).
+  geo: { lat: 47.718, lng: -116.9516 },
+  hours: "Monday–Sunday, 5:00 AM – 9:00 PM",
+  social: {
+    facebook: "https://www.facebook.com/burdettconcrete",
+    google: "https://maps.app.goo.gl/QTGxFC9PAXGP6Rpc6",
+  },
+} as const;
+
+export const FULL_ADDRESS = `${BUSINESS.address.street}, ${BUSINESS.address.city}, ${BUSINESS.address.state} ${BUSINESS.address.zip}`;
+
+/** Verified, real trust facts. Do not inflate these numbers. */
+export const TRUST = {
+  rating: 5.0,
+  reviewCount: 19,
+  bond: "$30,000",
+  liability: "$1,000,000",
+} as const;
+
+/** Opening hours for JSON-LD (5:00–21:00 every day). */
+export const OPENING_HOURS = {
+  days: [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ],
+  opens: "05:00",
+  closes: "21:00",
+} as const;
+
+export type PortfolioCategory =
+  | "broomed"
+  | "patios"
+  | "driveways"
+  | "stamped"
+  | "walkways"
+  | "staining-sealing";
+
+export interface ServiceMeta {
+  slug: string;
+  /** Card / nav label */
+  name: string;
+  /** Matching portfolio.json category, if photos exist for it */
+  photoCategory: PortfolioCategory | null;
+}
+
+/** The eight services, each with its own page. Order = display order. */
+export const SERVICES: ServiceMeta[] = [
+  { slug: "stamped-concrete", name: "Stamped & Decorative Concrete", photoCategory: "stamped" },
+  { slug: "concrete-driveways", name: "Concrete Driveways", photoCategory: "driveways" },
+  { slug: "concrete-patios", name: "Concrete Patios", photoCategory: "patios" },
+  { slug: "broomed-flatwork", name: "Broomed Flatwork", photoCategory: "broomed" },
+  { slug: "sidewalks-walkways-steps", name: "Sidewalks, Walkways & Steps", photoCategory: "walkways" },
+  { slug: "concrete-staining-sealing", name: "Concrete Staining & Sealing", photoCategory: "staining-sealing" },
+  { slug: "concrete-removal-replacement", name: "Concrete Removal & Replacement", photoCategory: "driveways" },
+  { slug: "commercial-concrete", name: "Commercial Concrete", photoCategory: "walkways" },
+];
+
+export interface CityMeta {
+  slug: string;
+  name: string;
+}
+
+/** The six service-area cities, each with its own page. */
+export const CITIES: CityMeta[] = [
+  { slug: "post-falls", name: "Post Falls" },
+  { slug: "coeur-dalene", name: "Coeur d'Alene" },
+  { slug: "hayden", name: "Hayden" },
+  { slug: "rathdrum", name: "Rathdrum" },
+  { slug: "spirit-lake", name: "Spirit Lake" },
+  { slug: "athol", name: "Athol" },
+];
+
+/** Primary navigation. */
+export const NAV_LINKS: { href: string; label: string }[] = [
+  { href: "/services", label: "Services" },
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/service-areas", label: "Service Areas" },
+  { href: "/reviews", label: "Reviews" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
+
+export const BRAND_LOGO =
+  "/brand/cropped-Concrete-Contractor-Post-Falls-Idaho-Burdett-Custom-Concrete-Website-Menubar-Logo-TB.webp";
